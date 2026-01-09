@@ -71,7 +71,7 @@ Since this game is run on the terminal, all actions are performed through text-b
     /include
      └── player.h
     README.md
-    Makefile
+    
 
 # Libraries and Tools Used
 * POSIX sockets

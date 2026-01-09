@@ -11,11 +11,11 @@ This is a network-based asynchronous multiplayer Battleship game server built in
 * **Deployment:** Supports SSH Tunneling and Remote Port Forwarding for secure wide-area network play.
 
 # Engineering Deep-Dive 
-**Event-Driven Concurrency:** Engineered the server core using epoll (Linux-native) and poll for I/O multiplexing. This allows the server to manage hundreds of concurrent players on a single thread with minimal CPU overhead.
+* **Event-Driven Concurrency:** Engineered the server core using epoll (Linux-native) and poll for I/O multiplexing. This allows the server to manage hundreds of concurrent players on a single thread with minimal CPU overhead.
 
-**Robust Protocol Design:** Designed a custom, string-based communication protocol. Built a validation engine that enforces strict message syntax (REG, BOMB), immediately dropping "malformed" or "bad-actor" clients to preserve server stability.
+* **Robust Protocol Design:** Designed a custom, string-based communication protocol. Built a validation engine that enforces strict message syntax (REG, BOMB), immediately dropping "malformed" or "bad-actor" clients to preserve server stability.
 
-**Memory Safety & Resilience:** Implemented graceful disconnection handling and SIGPIPE protection to ensure the server remains operational even when clients crash or experience network jitter.
+* **Memory Safety & Resilience:** Implemented graceful disconnection handling and SIGPIPE protection to ensure the server remains operational even when clients crash or experience network jitter.
 
 
 # Message Syntax

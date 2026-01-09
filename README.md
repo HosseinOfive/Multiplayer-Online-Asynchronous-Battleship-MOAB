@@ -5,6 +5,19 @@ It can also be hosted remotely using **SSH tunneling and port forwarding** for s
 This is a network-based asynchronous multiplayer Battleship game server built in C using sockets and I/O multiplexing. It allows multiple clients to connect and play concurrently.
 
 
+# Network Specs
+* **Language:** Pure C (POSIX Sockets).
+* **I/O Model:** Non-blocking I/O with Event Polling.
+* **Deployment:** Supports SSH Tunneling and Remote Port Forwarding for secure wide-area network play.
+
+# Engineering Deep-Dive 
+**Event-Driven Concurrency:** Engineered the server core using epoll (Linux-native) and poll for I/O multiplexing. This allows the server to manage hundreds of concurrent players on a single thread with minimal CPU overhead.
+
+**Robust Protocol Design:** Designed a custom, string-based communication protocol. Built a validation engine that enforces strict message syntax (REG, BOMB), immediately dropping "malformed" or "bad-actor" clients to preserve server stability.
+
+**Memory Safety & Resilience:** Implemented graceful disconnection handling and SIGPIPE protection to ensure the server remains operational even when clients crash or experience network jitter.
+
+
 # Message Syntax
 Since this game is run on the terminal, all actions are performed through text-based commands(strings):
   
@@ -73,10 +86,7 @@ Since this game is run on the terminal, all actions are performed through text-b
     README.md
     
 
-# Libraries and Tools Used
-* POSIX sockets
-* I/O multiplexing (poll/select)
-* nc and SSH for testing
+
 
 No external dependencies required. The server can be compiled using GCC on any Unix-based or WSL environment.
 Future Work:
